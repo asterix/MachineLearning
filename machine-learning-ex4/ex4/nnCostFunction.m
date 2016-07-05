@@ -63,29 +63,54 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
 
+% For every example in training set
+for i = 1:m
 
+   % Per sample
+   a1 = X(i,:);
 
+   % -- Forward-propagation --
+   % Compute hidden layer activations
+   z2 = (a1 * Theta1')';
+   a2 = [1; sigmoid(z2)];
 
+   % Compute output layer probabilities for all classes
+   z3 = a2' * Theta2';
+   a3 = sigmoid(z3)';
 
+   % Extract Yi(1/0) from Y(1 to K)
+   Yi = zeros(num_labels, 1);
+   Yi(y(i)) = 1;
 
+   % Compute J using generic sums over K classes equation
+   J = J + (-1 / m) * sum(Yi .* log(a3) + (1 - Yi) .* log(1 - a3));
 
+   % -- Back-propagation --
+   d3 = a3 - Yi;
+   Theta2_grad = Theta2_grad + (d3 * a2');
 
+   d2 = ((Theta2' * d3)(2:end)) .* sigmoidGradient(z2);
+   Theta1_grad = Theta1_grad + (d2 * a1);
 
+end;
 
+% Add regularization factors
+J = J + (lambda / (2 * m)) * (sum((Theta1(:,2:end).^2)(:)) + ...
+                              sum((Theta2(:,2:end).^2)(:)));
 
-
-
-
-
-
+% Get Dij by dividing by m + regularize
+Theta1_grad = (Theta1_grad + lambda * [zeros(size(Theta1,1),1) Theta1(:,2:end)]) / m;
+Theta2_grad = (Theta2_grad + lambda * [zeros(size(Theta2,1),1) Theta2(:,2:end)]) / m;
 
 % -------------------------------------------------------------
 
 % =========================================================================
 
 % Unroll gradients
-grad = [Theta1_grad(:) ; Theta2_grad(:)];
+grad = [Theta1_grad(:); Theta2_grad(:)];
 
 
 end
