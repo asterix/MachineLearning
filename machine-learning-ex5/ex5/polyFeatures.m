@@ -15,10 +15,15 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+% Add the first power vector
+X_poly = X;
 
+for i = 2:p
 
+   % Append an i-th power vector
+   X_poly = [X_poly (X_poly(:,1).^i)];
 
-
+end;
 
 % =========================================================================
 

@@ -39,14 +39,18 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+for i = 1:size(lambda_vec, 1)
 
+   % Try all lambdas and select one with least Jcv(t)
+   [theta] = trainLinearReg(X, y, lambda_vec(i));
 
+   % Use trained parameters to compute training error J(t)
+   [error_train(i) dummy] = linearRegCostFunction(X, y, theta, 0);
 
+   % Use trained parameters to compute cross-validation error Jcv(t)
+   [error_val(i) dummy] = linearRegCostFunction(Xval, yval, theta, 0);
 
-
-
-
-
+end;
 
 % =========================================================================
 

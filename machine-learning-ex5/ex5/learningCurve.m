@@ -51,13 +51,18 @@ error_val   = zeros(m, 1);
 %       end
 %
 
-% ---------------------- Sample Solution ----------------------
+for i = 1:m
 
+   % For every iteration increase the training set size
+   [theta] = trainLinearReg(X(1:i,:), y(1:i), lambda);
 
+   % Use trained parameters to compute training error J(t)
+   [error_train(i) dummy] = linearRegCostFunction(X(1:i,:), y(1:i), theta, 0);
 
+   % Use trained parameters to compute cross-validation error Jcv(t)
+   [error_val(i) dummy] = linearRegCostFunction(Xval, yval, theta, 0);
 
-
-
+end;
 
 % -------------------------------------------------------------
 
