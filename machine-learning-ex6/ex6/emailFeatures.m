@@ -48,13 +48,11 @@ x = zeros(n, 1);
 %
 %
 
+for p = 1:size(word_indices)
+   x(word_indices(p)) = 1;
+end;
 
-
-
-
-
-
-
+fprintf('\nNumber of non-zero features = %d\n\n', sum(x));
 % =========================================================================
     
 
