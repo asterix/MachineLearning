@@ -26,12 +26,11 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
-
+% Over all centroids
+for i = 1:K
+   % Compute the means of all assigned points
+   centroids(i,:) = mean(X(find(idx == i),:));
+end;
 
 % =============================================================
 

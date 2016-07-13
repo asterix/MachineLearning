@@ -21,11 +21,11 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+% Do for all examples in X
+for i = 1:size(X,1)
+   % Compute the closest centroid
+   [minVal, idx(i)] = min(sqrt(sum((bsxfun(@minus, centroids, X(i,:))).^2, 2)));
+end;
 
 % =============================================================
 

@@ -18,8 +18,8 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
-
-
+% Project X (n-dim) on to first K eigenvectors (of n-dims each) to get k-dims
+Z = X * U(:,1:K);
 
 % =============================================================
 
