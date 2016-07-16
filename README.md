@@ -1,11 +1,11 @@
 # Machine Learning
 
-## Linear Regression
+## Ex-1 - Linear Regression
 
-Uni/Multivariate linear regression
-1. Using gradient descent
-2. Using normal equation
+* Uni/Multivariate linear regression
+* Using gradient descent
+* Using normal equation
 
-## Logistic Regression
+## Ex-2 - Logistic Regression
 
 
